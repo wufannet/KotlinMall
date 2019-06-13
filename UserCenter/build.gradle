@@ -1,5 +1,10 @@
-apply plugin: 'com.android.library'
+if (isUserModule.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
 
 android {
@@ -20,6 +25,20 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            if (isUserModule.toBoolean()) {
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                //release模式下排除
+                java{
+                    exclude 'src/main/debug/**'
+                }
+            } else {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }
         }
     }
 
