@@ -61,5 +61,6 @@
     </LinearLayout>
     <Button android:id="@+id/mRegisterBtn"
             style="@style/FullBtnStyle"
+            android:enabled="true"
             android:text="注册"/>
 </LinearLayout>
