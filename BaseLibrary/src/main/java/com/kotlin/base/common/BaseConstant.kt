@@ -2,6 +2,7 @@ package com.kotlin.base.common
 
 /*
     基础常量
+    放在base中, base和当前项目耦合,并不是通用的可以直接拷贝的,没法打成库包通用.还是代码层的复用,要修改常量. 不同项目除了ui/业务包,别的好像都通用了.
  */
 class BaseConstant{
     companion object {
