@@ -19,7 +19,8 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(),RegisterView {
         mPresenter.mView = this
 
         mRegisterBtn.setOnClickListener{
-            mPresenter.register("","","")
+            mPresenter.register(mMobileEt.text.toString(),mPwdEt.text.toString(),mVerifyCodeEt.text.toString())
+            //D/OkHttp: <-- HTTP FAILED: java.net.SocketTimeoutException: failed to connect to /10.28.14.168 (port 8080) from /192.168.1.192 (port 39144) after 10000ms
         }
 
     }

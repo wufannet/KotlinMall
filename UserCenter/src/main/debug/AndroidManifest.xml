@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.kotlin.user">
-
+    <!--需要些两遍,有其他方法动态配置清单吗? 或者有父类来继承,覆盖,扩展-->
+    <!--google indexable 警告, android 代码能通过网页下发运行就好,除了用户信息,可搜索,web搜索,app搜索,超级应用app内搜索,-->
+    <!--web模块化运行,是最彻底单独页面可运行的,除了用户信息别的都是通用的,android也应该这样 ,1.用户信息 2.播放器在浏览器或者通过插件,-->
+    <!--大前端的融合,进化,跨平台,体验,数据-->
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <!--  android:name="com.kotlin.base.common.BaseApplication"-->
