@@ -3,9 +3,10 @@ if (isUserModule.toBoolean()) {
 } else {
     apply plugin: 'com.android.application'
 }
+apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android'
+
 
 android {
     compileSdkVersion 28
@@ -33,7 +34,7 @@ android {
             if (isUserModule.toBoolean()) {
                 manifest.srcFile 'src/main/release/AndroidManifest.xml'
                 //release模式下排除
-                java{
+                java {
                     exclude 'src/main/debug/**'
                 }
             } else {
@@ -52,4 +53,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(path: ':Provider')
+
+    //Dagger2 kapt每个模块都需要配置
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

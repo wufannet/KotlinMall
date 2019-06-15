@@ -4,17 +4,22 @@ import com.kotlin.base.ext.execute
 import com.kotlin.base.presenter.BasePresenter
 import com.kotlin.base.rx.BaseSubscriber
 import com.kotlin.user.presenter.view.RegisterView
+import com.kotlin.user.service.UserService
 import com.kotlin.user.service.impl.UserServiceImpl
 import rx.Subscriber
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * 1.业务逻辑,调用服务类/M(单层或者多层区分网络和数据库)类
  */
-class RegisterPresenter:BasePresenter<RegisterView>() {
+class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
 
-    fun register(mobile:String,verifyCode:String,pwd:String){
+    @Inject
+    lateinit var userService:UserService
+
+    fun register(mobile: String, verifyCode: String, pwd: String) {
 
         /*
         kotlin + rxjava + retrofit 做业务,网络
@@ -25,11 +30,10 @@ class RegisterPresenter:BasePresenter<RegisterView>() {
         3.onNext(t: Boolean)
          */
 
-        val userService = UserServiceImpl()
 
         //重复的代码都可以考虑扩展方法抽取,取代工具类,还有基类,接口来抽取,更进一步开源框架,技术轮子,业务与技术的分离
-        userService.register(mobile,verifyCode,pwd)
-            .execute(object : BaseSubscriber<Boolean>(){
+        userService.register(mobile, verifyCode, pwd)
+            .execute(object : BaseSubscriber<Boolean>() {
                 override fun onNext(t: Boolean) {
                     mView.onRegisterResult(t)
                 }

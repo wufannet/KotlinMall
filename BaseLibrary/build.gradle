@@ -57,6 +57,7 @@ dependencies {
     api "com.squareup.retrofit2:adapter-rxjava:${retrofit_version}"
     //Dagger2
     api "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     //RxLifecycle
     api "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
